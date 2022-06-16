@@ -1,0 +1,101 @@
+{
+  "documentationUrl": "https://docs.airbyte.io/integrations/sources/mobilize",
+  "connectionSpecification": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Mobilize Spec",
+    "type": "object",
+    "required": ["Mobilize_API_key"],
+    "additionalProperties": false,
+    "properties": {
+      "Mobilize_API_key": {
+        "type": "string",
+        "description": "Your private API key for Mobilize.",
+        "pattern": "[\\s\\S]*",
+        "airbyte_secret": true
+      },
+      "organization_id": {
+        "type": "string",
+        "description": "The Mobilize id (numeric) of the organization you want to load. For all public events, use organization_id=1.",
+        "pattern": "^[0-9]+$",
+        "examples": [
+          "1, 100, 999"
+        ]
+      },
+      "updated_since": {
+        "type": "string",
+        "description": "Filter to events updated since given date (ISO Date - e.g., 2021-08-01)",
+        "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+        "examples": [
+          "2021-08-01"
+        ]
+      },
+      "timeslot_start": {
+        "type": "string",
+        "description": "Filter by a timeslot start of events using >,>=,<,<= and ISO date (eg: <=2018-12-13 05:00:00PM)",
+        "pattern": "[\\s\\S]*",
+        "examples": [
+          ">=2020-09-01 05:00:00PM"
+        ]
+      },
+      "timeslot_end": {
+        "type": "string",
+        "description": "Filter by a timeslot end of events using >,>=,<,<= and ISO date (eg: <=2018-12-13 05:00:00PM)",
+        "pattern": "[\\s\\S]*",
+        "examples": [
+          "<=2021-12-31 05:00:00PM"
+        ]
+      },
+      "max_timeslots": {
+        "type": "integer",
+        "description": "Max number of timeslots for the request to fetch",
+        "examples": [
+          "1, 20, 100"
+        ]
+      },
+      "zipcode": {
+        "type": "string",
+        "description": "Filter by a Events' Locations' postal code. If present, returns Events sorted by distance from zipcode, and virtual events will not be returned.",
+        "pattern": "^\\d{5}(?:[-\\s]\\d{4})?$",
+        "examples": [
+          "78722",
+          "02755"
+        ]
+      },
+      "max_dist": {
+        "type": "string",
+        "description": "Filter Events' Locations' distance from provided zipcode.",
+        "pattern": "^[0-9]+$",
+        "examples": [
+          "1,5,500"
+        ]
+      },
+      "visibility": {
+        "type": "string",
+        "description": "Either PUBLIC or PRIVATE. Private events only return if user is authenticated.",
+        "pattern": "\\b(PUBLIC|PRIVATE)\\b",
+        "examples": [
+          "PUBLIC, PRIVATE"
+        ]
+      },
+      "exclude_full": {
+        "type": "boolean",
+        "default": false,
+        "description": "If `exclude_full=true`, filter out full Timeslots (and Events if all of an Event's Timeslots are full)"
+      },
+      "is_virtual": {
+        "type": "string",
+        "description": "Leave this field blank to include both virtual or in-person events. Entering `false` will return only in-person events, while `true` will return only virtual events. Note that providing a zipcode also implies `is_virtual=false`.",
+        "pattern": "^(|true|false)$",
+        "examples": [
+          "true, false, (leave blank)"
+        ]
+      },
+      "event_types": {
+        "type": "string",
+        "description": "The type of the event.",
+        "pattern": "\\b(CANVASS|PHONE_BANK|TEXT_BANK|MEETING|COMMUNITY|FUNDRAISER|MEET_GREET|HOUSE_PARTY|VOTER_REG|TRAINING|FRIEND_TO_FRIEND_OUTREACH|DEBATE_WATCH_PARTY|ADVOCACY_CALL|OTHER)\\b",
+        "examples": ["CANVASS, PHONE_BANK, TEXT_BANK, MEETING, COMMUNITY, FUNDRAISER, MEET_GREET, HOUSE_PARTY, VOTER_REG, TRAINING, FRIEND_TO_FRIEND_OUTREACH, DEBATE_WATCH_PARTY, ADVOCACY_CALL, OTHER"]
+      }
+    }
+  }
+}

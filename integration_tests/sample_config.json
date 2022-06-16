@@ -1,0 +1,12 @@
+{
+  "organization_id": "1",
+  "updated_since": "2021-08-01",
+  "timeslot_start": ">=2020-09-01 05:00:00PM",
+  "timeslot_end": "<=2021-12-31 05:00:00PM",
+  "max_timeslots": 20,
+  "zipcode": "78660",
+  "max_dist": "3000",
+  "exclude_full": false,
+  "is_virtual": "",
+  "Mobilize_API_key": "none"
+}
