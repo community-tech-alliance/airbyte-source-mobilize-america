@@ -29,9 +29,10 @@ MAIN_REQUIREMENTS = [
     "airbyte-cdk","petl","parsons_utilities @ https://github.com/community-tech-alliance/parsons-utilities/archive/refs/heads/mobilize.zip"
 ]
 
+# TODO(): Add back acceptance tests
 TEST_REQUIREMENTS = [
     "pytest~=6.1",
-    "source-acceptance-test",
+#    "source-acceptance-test",
 ]
 
 setup(
