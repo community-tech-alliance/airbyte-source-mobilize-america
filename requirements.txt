@@ -1,7 +1,7 @@
 airbyte-cdk==0.1.60
 attrs==21.4.0
 backoff==2.1.2
-certifi==2021.5.30
+certifi==2022.12.7
 charset-normalizer==2.0.4
 Deprecated==1.2.13
 dpath==2.0.6
